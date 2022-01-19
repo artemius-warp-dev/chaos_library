@@ -227,6 +227,13 @@
               (push '("<-" . ?\u2190) prettify-symbols-alist)
               (push '("|>" . ?\u25B7) prettify-symbols-alist))))
 
+
+(use-package elixir-yasnippets
+  :ensure t
+  :config (yas-reload-all)
+  :init
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

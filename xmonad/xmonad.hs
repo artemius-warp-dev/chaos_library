@@ -121,7 +121,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     , ((modm .|. shiftMask, xK_Up),    shiftToPrev)
 
     -- ScreeenShot
-    , ((modm, xK_i), spawn "scrot -sf '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/'")
+    , ((modm .|. shiftMask, xK_Print), spawn "sleep 0.2; scrot -sf '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/'")
     , ((modm, xK_Print), spawn "scrot")
     ]
     -- Workspaces moveset for clickable xmobar's titles
