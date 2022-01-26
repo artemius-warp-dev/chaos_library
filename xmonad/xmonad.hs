@@ -17,7 +17,6 @@ import XMonad.Hooks.DynamicLog(dynamicLogWithPP, wrap, xmobarPP, xmobarColor, sh
 import System.IO (hPutStrLn)
 import XMonad.Hooks.ManageDocks
 
-
 -- The preferred terminal program, which is used in a binding below and by
 -- certain contrib modules.
 
@@ -108,7 +107,7 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- Functional keys binding
     , ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl s +10%")
     , ((0, xF86XK_MonBrightnessDown), spawn "brightnessctl s 10%-")
-    , ((0, xF86XK_AudioMute), spawn "amixer -D pulse set Master 1+ toggle")
+    , ((0, xF86XK_AudioMute), spawn "amixer -D pulse set Master toggle")
     , ((0, xF86XK_AudioLowerVolume), spawn "amixer set 'Master' 1%-")
     , ((0, xF86XK_AudioRaiseVolume), spawn "amixer set 'Master' 1%+")
     , ((0, xF86XK_AudioPlay), spawn "playerctl play-pause")
