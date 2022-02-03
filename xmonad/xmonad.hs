@@ -122,6 +122,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
     -- ScreeenShot
     , ((modm .|. shiftMask, xK_Print), spawn "sleep 0.2; scrot -sf '%Y-%m-%d_$wx$h.png' -e 'mv $f ~/Pictures/'")
     , ((modm, xK_Print), spawn "scrot")
+    -- Download youtube mp3
+    , ((modm .|. shiftMask, xK_y), spawn "~/Documents/code/configs/chaos_library/scripts/youtube_dl.sh")
     ]
     -- Workspaces moveset for clickable xmobar's titles
     ++
