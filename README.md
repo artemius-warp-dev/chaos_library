@@ -30,3 +30,4 @@ My .dotfiles and configuration scripts for development
     - compton
     - redshift
     `deps_install.sh`
+sudo apt install slock

@@ -103,6 +103,8 @@ myKeys conf@(XConfig {XMonad.modMask = modm}) = M.fromList $
 
     -- Restart xmonad
     , ((modm .|. shiftMask, xK_r     ), spawn "xmonad --recompile; xmonad --restart")
+    -- Lock screen
+    , ((modm .|. shiftMask, xK_l     ), spawn "slock")
 
     -- Functional keys binding
     , ((0, xF86XK_MonBrightnessUp), spawn "brightnessctl s +10%")
