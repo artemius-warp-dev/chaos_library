@@ -12,6 +12,8 @@
 (setq-default indent-tabs-mode nil)
 ;; Set up the visible bell
 (setq visible-bell t)
+(xterm-mouse-mode 1)
+(global-set-key (kbd "C-c C-d") 'kill-whole-line)
 
 (set-face-attribute 'default nil :font "Fira Code Retina" :height runemacs/default-font-size)
 
