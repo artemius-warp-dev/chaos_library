@@ -31,3 +31,4 @@ My .dotfiles and configuration scripts for development
     - redshift
     `deps_install.sh`
 sudo apt install slock
+test
