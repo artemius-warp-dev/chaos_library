@@ -23,7 +23,7 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/artgits/Pictures/wallpapers/ArtemGITS_warhammer_40000_chaos_ussr_18ede227-722b-46cc-aad6-3efbae5068e3.png fill
+output * bg /home/artgits/Pictures/wallpapers/ArtemGITS_warhammer_40000_chaos_communism_f8841aa2-5582-4c4e-8c68-87f478ed444e.png fill
 
 #HiDPI
 output eDP-1 scale 2
@@ -182,6 +182,20 @@ exec_always nm-applet --indicator
     # Show the next scratchpad window or hide the focused scratchpad window.
     # If there are multiple scratchpad windows, this command cycles through them.
     bindsym $mod+minus scratchpad show
+
+#
+# Media keys
+#
+   bindsym XF86AudioRaiseVolume exec amixer set 'Master' 1%+
+   bindsym XF86AudioLowerVolume exec amixer set 'Master' 1%-
+   bindsym XF86AudioMute exec amixer -D pulse set 'Master' toggle
+   bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
+   bindsym XF86MonBrightnessUp exec brightnessctl set 5%+
+   bindsym XF86AudioPlay exec playerctl play-pause
+   bindsym XF86AudioNext exec playerctl next
+   bindsym XF86AudioPrev exec playerctl previous
+   bindsym XF86Search exec $menu
+
 #
 # Resizing containers:
 #
