@@ -209,6 +209,12 @@ exec_always nm-applet --indicator
    bindsym XF86Search exec $menu
 
 #
+#Screenshots
+#
+  bindsym $mod+Shift+Print exec grim -g "$(slurp)" $(xdg-user-dir PICTURES)/$(date +'%s_grim.png')
+
+
+#
 # Resizing containers:
 #
 mode "resize" {
