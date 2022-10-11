@@ -1,1 +1,1 @@
-apt isntall grim && apt install slurp swaylock swayiddle
+apt isntall grim && apt install slurp swaylock swayiddle imagemagick

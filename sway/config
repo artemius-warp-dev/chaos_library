@@ -27,7 +27,6 @@ output * bg /home/artgits/Pictures/wallpapers/ArtemGITS_warhammer_40000_chaos_co
 
 #HiDPI
 output eDP-1 scale 2
-
 #
 # Example configuration:
 #
@@ -46,10 +45,14 @@ output eDP-1 scale 2
 
 
 exec swayidle -w \
-          timeout 700 '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png' \
-          timeout 1000 'swaymsg "output * dpms off"; sleep 1; systemctl suspend' \
-               resume 'swaymsg "output * dpms on"' \
+          timeout 500 '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png' \
+          timeout 900 'swaymsg "output * dpms off"; sleep 1; systemctl suspend' \
+               resume 'swaymsg "output * dpms on"'
 exec_always nm-applet --indicator
+
+# Inhibit Idle if a window is fullscreen
+for_window [class="^.*"] inhibit_idle fullscreen
+for_window [app_id="^.*"] inhibit_idle fullscreen
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off
 # your displays after another 300 seconds, and turn your screens back on when
@@ -118,11 +121,6 @@ exec_always nm-applet --indicator
     bindsym $mod+Shift+$down move down
     bindsym $mod+Shift+$up move up
     bindsym $mod+Shift+$right move right
-    # Ditto, with arrow keys
-    bindsym $mod+Shift+Left move left
-    bindsym $mod+Shift+Down move down
-    bindsym $mod+Shift+Up move up
-    bindsym $mod+Shift+Right move right
 #
 # Workspaces:
 #
@@ -220,12 +218,6 @@ mode "resize" {
     bindsym $up resize shrink height 10px
     bindsym $right resize grow width 10px
 
-    # Ditto, with arrow keys
-    bindsym Left resize shrink width 10px
-    bindsym Down resize grow height 10px
-    bindsym Up resize shrink height 10px
-    bindsym Right resize grow width 10px
-
     # Return to default mode
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -240,4 +232,9 @@ bar {
     swaybar_command waybar
 }
 
+default_border none
+gaps inner 5
+
 include /etc/sway/config.d/*
+
+
