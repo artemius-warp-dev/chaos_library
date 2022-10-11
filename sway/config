@@ -44,18 +44,11 @@ output eDP-1 scale 2
 #bindswitch lid:on output eDP-1 disable
 #bindswitch lid:off output eDP-1 enable
 
+
 exec swayidle -w \
-         timeout 300 'swaylock --hide-keyboard-layout -f -c 000000 -i $lock_bg' \
-         timeout 600 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"' \
-         before-sleep 'swaylock --hide-keyboard-layout -f -c 000000 -i $lock_bg'
-
-
-# exec swayidle -w \
-#          timeout 300 'swaylock -f -c 000000' \
-#          timeout 600 'swaymsg "output * dpms off"' \
-#               resume 'swaymsg "output * dpms on"' \
-#          before-sleep 'swaylock -f -c 000000'
+          timeout 700 '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png' \
+          timeout 1000 'swaymsg "output * dpms off"; sleep 1; systemctl suspend' \
+               resume 'swaymsg "output * dpms on"' \
 exec_always nm-applet --indicator
 #
 # This will lock your screen after 300 seconds of inactivity, then turn off

@@ -1,1 +1,1 @@
-apt isntall grim && apt install slurp
+apt isntall grim && apt install slurp swaylock swayiddle
