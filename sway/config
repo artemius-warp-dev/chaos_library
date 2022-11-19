@@ -54,6 +54,7 @@ exec swayidle -w \
 
 exec_always nm-applet --indicator
 exec_always wlsunset -l 41.33 -L 69.27
+exec safeeyes
 
 # Inhibit Idle if a window is fullscreen
 for_window [class="^.*"] inhibit_idle fullscreen
