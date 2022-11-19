@@ -42,6 +42,7 @@ output eDP-1 scale 2
 # Disable laptop's display when closed
 #bindswitch lid:on output eDP-1 disable
 #bindswitch lid:off output eDP-1 enable
+
 set $lock '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png'
 
 exec swayidle -w \
@@ -52,6 +53,7 @@ exec swayidle -w \
           after-resume 'swaymsg "output * dpms on"'
 
 exec_always nm-applet --indicator
+exec_always wlsunset -l 41.33 -L 69.27
 
 # Inhibit Idle if a window is fullscreen
 for_window [class="^.*"] inhibit_idle fullscreen
@@ -234,7 +236,7 @@ bindsym $mod+r mode "resize"
 bar {
     swaybar_command waybar
     mode hide
-    modifier Mod4
+    modifier $mod
 }
 
 default_border none
