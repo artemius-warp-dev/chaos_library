@@ -24,7 +24,8 @@ set $menu dmenu_path | dmenu | xargs swaymsg exec --
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
 exec "cd ~/.config/sway/ && ./wallpaper_changer.sh"
-
+#policykit lauch
+exec lxpolkit
 #HiDPI
 output eDP-1 scale 2
 #
