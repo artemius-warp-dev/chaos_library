@@ -47,6 +47,7 @@ exec swayidle -w \
 
 exec_always nm-applet --indicator
 exec_always wlsunset -l 41.33 -L 69.27
+exec_always autotiling
 exec safeeyes
 
 # Inhibit Idle if a window is fullscreen
@@ -107,16 +108,28 @@ for_window [app_id="^.*"] inhibit_idle fullscreen
 # Moving around:
 #
     # Move your focus around
-    bindsym $mod+$left focus left
-    bindsym $mod+$down focus down
-    bindsym $mod+$up focus up
-    bindsym $mod+$right focus right
+   # bindsym $mod+$left focus left
+   # bindsym $mod+$down focus down
+   # bindsym $mod+$up focus up
+   # bindsym $mod+$right focus right
     # Or use $mod+[up|down|left|right]
-    bindsym $mod+Left focus left
-    bindsym $mod+Down focus down
-    bindsym $mod+Up focus up
-    bindsym $mod+Right focus right
+
+    #bindsym $mod+Alt+$left move left
+    #bindsym $mod+Alt+$down move down
+    #bindsym $mod+Alt+$up move up
+    #bindsym $mod+Alt+$right move right
+
+    # # Allow switching between workspaces with left and right swipes
+    # bindgesture swipe:right workspace prev
+    # bindgesture swipe:left workspace next
+
+    # # Allow container movements by pinching them
+    # bindgesture pinch:inward+up move up
+    # bindgesture pinch:inward+down move down
+    # bindgesture pinch:inward+left move left
+    # bindgesture pinch:inward+right move right 
     
+            
 #
 # Workspaces:
 #
