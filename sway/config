@@ -14,7 +14,7 @@ set $down j
 set $up k
 set $right l
 # Your preferred terminal emulator
-set $term cool-retro-term
+set $term gnome-terminal
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
@@ -29,6 +29,7 @@ exec "cd ~/.config/sway/ && ./wallpaper_changer.sh"
 exec lxpolkit
 #HiDPI
 output eDP-1 scale 2
+output DP-1  mode 3840x2160@60hz scale 2
 #
 # Example configuration:
 #
@@ -36,14 +37,26 @@ output eDP-1 scale 2
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
-set $lock '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png'
-set $default_lock 'swaylock -e -f -i ~/.config/sway/default_screenlock.png'
-exec swayidle -w \
-          timeout 400  $lock \
-          timeout 700 'swaymsg "output * dpms off"; sleep 1; systemctl suspend' \
-          resume 'swaymsg "output * dpms on"' \
-          before-sleep $default_lock \
-          after-resume 'swaymsg "output * dpms on"'
+# Watch closed laptop lid
+set $laptop eDP-1
+bindswitch --reload --locked lid:on output $laptop disable
+bindswitch --reload --locked lid:off output $laptop enable
+
+# Display timeouts
+exec_always swayidle -w \
+      timeout 150 'swaylock-blur -- -f' \
+      timeout 300 'swaymsg "output * dpms off"' \
+      		resume 'swaymsg "output * dpms on"' \
+      		before-sleep 'swaylock-blur -- -f'
+
+# set $lock '~/.config/sway/create_lock_img.sh ; swaylock -e -f -i /tmp/lockscreen.png'
+# set $default_lock 'swaylock -e -f -i ~/.config/sway/default_screenlock.png'
+# exec swayidle -w \
+#           timeout 400  $lock \
+#           timeout 700 'swaymsg "output * dpms off"; sleep 1; systemctl suspend' \
+#           resume 'swaymsg "output * dpms on"' \
+#           before-sleep $default_lock \
+#           after-resume 'swaymsg "output * dpms on"'
 
 exec_always nm-applet --indicator
 exec_always wlsunset -l 41.33 -L 69.27
