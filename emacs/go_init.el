@@ -1,1 +1,1 @@
-go_init.el
+/home/artgits/.emacs.d/go_init.el
