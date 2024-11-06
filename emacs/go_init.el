@@ -15,6 +15,7 @@
 (global-set-key (kbd "C-c d") 'toggle-window-dedicated)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+(load-theme 'tango-dark)  ;; or 'tango, 'wombat, etc.
 ;; Font configuration
 (defvar runemacs/default-font-size 125)
 (set-face-attribute 'default nil :font "Fira Code Retina" :height runemacs/default-font-size)
@@ -36,16 +37,16 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; UX/UI
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+;; ;; UX/UI
+;; (use-package doom-themes
+;;   :config
+;;   (setq doom-themes-enable-bold t
+;;         doom-themes-enable-italic t)
+;;   (load-theme 'doom-one t)
+;;   (doom-themes-visual-bell-config)
+;;   (doom-themes-neotree-config)
+;;   (doom-themes-treemacs-config)
+;;   (doom-themes-org-config))
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
@@ -105,6 +106,16 @@
 ;; Magit for Git
 (use-package magit
   :bind ("C-c m s" . magit-status))
+
+(use-package xwidget
+  :ensure t)
+
+;; Load org-preview-html for HTML5 previews
+(use-package org-preview-html
+  :ensure t
+  :config
+  (setq org-preview-html-enable-xwidgets t)  ;; Ensure xwidget support
+  (define-key org-mode-map (kbd "C-c C-p") 'org-preview-html-mode))
 
 
 ;; Function to run the current Go file
