@@ -15,6 +15,7 @@
 (global-set-key (kbd "C-c d") 'toggle-window-dedicated)
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+(load-theme 'tango-dark)  ;; or 'tango, 'wombat, etc.
 ;; Font configuration
 (defvar runemacs/default-font-size 125)
 (set-face-attribute 'default nil :font "Fira Code Retina" :height runemacs/default-font-size)
@@ -40,16 +41,7 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-;; UX/UI
-(use-package doom-themes
-  :config
-  (setq doom-themes-enable-bold t
-        doom-themes-enable-italic t)
-  (load-theme 'doom-one t)
-  (doom-themes-visual-bell-config)
-  (doom-themes-neotree-config)
-  (doom-themes-treemacs-config)
-  (doom-themes-org-config))
+
 
 (column-number-mode)
 (global-display-line-numbers-mode t)
