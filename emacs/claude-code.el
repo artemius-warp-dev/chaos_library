@@ -1,13 +1,14 @@
-;;; erlang.el --- Erlang development configuration -*- lexical-binding: t; -*-
+;;; claude-code.el --- Erlang development with Claude Code IDE -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;; Erlang-specific configuration with LSP, Claude IDE, and development tools
-;; Usage: emacs -q --load ~/.emacs.d/erlang.el
+;; Erlang-specific configuration with LSP/ELP, Flycheck, and Claude Code IDE
+;; integration via claude-code-ide.el (MCP/WebSocket bridge).
+;;
+;; Usage: emacs -q --load ~/.emacs.d/claude-code.el
 
 ;;; Code:
 
 ;;;; Load Base Configuration
-;; First load the base init.el for general Emacs setup
 (load-file (expand-file-name "~/.emacs.d/init.el"))
 
 ;;;; Erlang Mode
@@ -78,18 +79,40 @@
 (add-hook 'flycheck-error-list-mode-hook #'my-flycheck-errors-buffer-setup)
 
 ;;;; Claude Code IDE Integration
-;; Requires: npm install -g @zed-industries/claude-agent-acp
-(use-package agent-shell
-  :ensure t
-  :config
-  ;; Emacs not compiled with --with-rsvg; disable SVG icons
-  (setq agent-shell-header-style 'text
-        agent-shell-show-config-icons nil)
-  ;; Defer auth setup to avoid shell-maker firing before a session exists
-  (add-hook 'after-init-hook
-            (lambda ()
-              (setq agent-shell-anthropic-authentication
-                    (agent-shell-anthropic-make-authentication :login t)))))
+(use-package websocket :ensure t)
+(use-package transient :ensure t)
+(use-package eat :ensure t)
 
-(provide 'erlang)
-;;; erlang.el ends here
+(use-package claude-code-ide
+  :vc (:url "https://github.com/manzaltu/claude-code-ide.el" :rev :newest)
+
+  :bind (("C-c C-'" . claude-code-ide-menu)
+         ("C-c a s" . claude-code-ide)
+         ("C-c a c" . claude-code-ide-continue)
+         ("C-c a r" . claude-code-ide-resume)
+         ("C-c a k" . claude-code-ide-stop)
+         ("C-c a l" . claude-code-ide-list-sessions)
+         ("C-c a t" . claude-code-ide-toggle)
+         ("C-c a p" . claude-code-ide-send-prompt)
+         ("C-c a @" . claude-code-ide-insert-at-mentioned))
+
+  :init
+  ;; claude lives in ~/.local/bin which may not be on exec-path with -q
+  (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
+  (setenv "PATH" (concat (expand-file-name "~/.local/bin") ":"
+                         (getenv "PATH")))
+  (setq claude-code-ide-cli-path      (expand-file-name "~/.local/bin/claude")
+        claude-code-ide-terminal-backend 'eat
+        claude-code-ide-window-side   'right
+        claude-code-ide-window-width  90
+        claude-code-ide-use-side-window t
+        claude-code-ide-focus-on-open  t
+        claude-code-ide-use-ide-diff   t
+        ;; flycheck is loaded above; 'auto will pick it up automatically
+        claude-code-ide-diagnostics-backend 'auto)
+
+  :config
+  (claude-code-ide-emacs-tools-setup))
+
+(provide 'claude-code)
+;;; claude-code.el ends here

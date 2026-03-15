@@ -41,7 +41,8 @@
         lsp-prefer-flymake nil
         lsp-enable-snippet nil
         lsp-log-io nil
-        lsp-idle-delay 0.500))
+        lsp-idle-delay 0.500
+        lsp-disabled-clients '(semgrep-ls)))  ;; Add this line
 
 
 

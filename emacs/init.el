@@ -64,6 +64,10 @@
   (load-theme 'dracula t))
 
 (custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(line-number ((t (:foreground "white"))))
  '(line-number-current-line ((t (:foreground "green")))))
 
@@ -107,6 +111,11 @@
 (use-package yasnippet
   :hook (prog-mode . yas-minor-mode))
 
+;;;; Auto Revert
+(global-auto-revert-mode 1)
+(setq auto-revert-interval 1
+      auto-revert-check-vc-info t)
+
 ;;;; Git Integration
 (use-package magit
   :bind ("C-c m s" . magit-status))
@@ -138,3 +147,25 @@
 
 (provide 'init)
 ;;; init.el ends here
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(claude-code-ide-cli-extra-flags "")
+ '(claude-code-ide-cli-path "/home/artgits/.local/bin/claude")
+ '(claude-code-ide-focus-claude-after-ediff t)
+ '(claude-code-ide-focus-on-open t)
+ '(claude-code-ide-show-claude-window-in-ediff t)
+ '(claude-code-ide-switch-tab-on-ediff t)
+ '(claude-code-ide-system-prompt nil)
+ '(claude-code-ide-use-ide-diff t)
+ '(claude-code-ide-use-side-window t)
+ '(claude-code-ide-window-height 20)
+ '(claude-code-ide-window-side 'right)
+ '(claude-code-ide-window-width 90)
+ '(package-selected-packages
+   '(agent-shell claude-code-ide company counsel dracula-theme eat
+		 elixir-mode erlang flycheck go-mode helm-lsp
+		 lsp-origami lsp-ui magit org-preview-html projectile
+		 vterm web-mode yaml-mode yasnippet)))
