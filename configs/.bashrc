@@ -143,3 +143,7 @@ dkcRR() {
 neofetch
 export USE_GKE_GCLOUD_AUTH_PLUGIN=True
 export PATH="$HOME/.local/bin:$PATH"
+bind 'set enable-bracketed-paste on'
+shopt -s checkwinsize
+
+

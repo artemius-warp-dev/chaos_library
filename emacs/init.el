@@ -68,6 +68,16 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ediff-current-diff-A ((t (:background "#5e1010" :foreground "white"))))
+ '(ediff-current-diff-B ((t (:background "#105e10" :foreground "white"))))
+ '(ediff-current-diff-C ((t (:background "#10105e" :foreground "white"))))
+ '(ediff-even-diff-A ((t (:background "#3a1a1a" :foreground "white"))))
+ '(ediff-even-diff-B ((t (:background "#1a3a1a" :foreground "white"))))
+ '(ediff-fine-diff-A ((t (:background "#8b0000" :foreground "white" :weight bold))))
+ '(ediff-fine-diff-B ((t (:background "#006400" :foreground "white" :weight bold))))
+ '(ediff-fine-diff-C ((t (:background "#00008b" :foreground "white" :weight bold))))
+ '(ediff-odd-diff-A ((t (:background "#3a1a1a" :foreground "white"))))
+ '(ediff-odd-diff-B ((t (:background "#1a3a1a" :foreground "white"))))
  '(line-number ((t (:foreground "white"))))
  '(line-number-current-line ((t (:foreground "green")))))
 
@@ -83,6 +93,9 @@
          ("C-x C-f" . counsel-find-file)
          :map minibuffer-local-map
          ("C-r" . counsel-minibuffer-history)))
+
+(use-package swiper
+  :bind ("C-s" . swiper))
 
 (use-package which-key
   :defer 2
@@ -116,22 +129,12 @@
 (setq auto-revert-interval 1
       auto-revert-check-vc-info t)
 
+;;;; Symlink Handling
+(setq vc-follow-symlinks t)
+
 ;;;; Git Integration
 (use-package magit
   :bind ("C-c m s" . magit-status))
-
-;;;; LSP Configuration
-(use-package lsp-ui
-  :after lsp-mode
-  :commands lsp-ui-mode
-  :hook (lsp-mode . lsp-ui-mode)
-  :init
-  (setq lsp-ui-doc-enable t
-        lsp-ui-doc-position 'bottom
-        lsp-ui-doc-max-width 80
-        lsp-ui-doc-max-height 20
-        lsp-ui-doc-show-with-cursor t
-        lsp-ui-sideline-enable t))
 
 ;;;; Custom Utility Functions
 (defun toggle-window-dedicated ()
@@ -165,7 +168,7 @@
  '(claude-code-ide-window-side 'right)
  '(claude-code-ide-window-width 90)
  '(package-selected-packages
-   '(agent-shell claude-code-ide company counsel dracula-theme eat
-		 elixir-mode erlang flycheck go-mode helm-lsp
-		 lsp-origami lsp-ui magit org-preview-html projectile
-		 vterm web-mode yaml-mode yasnippet)))
+   '(agent-shell auto-highlight-symbol claude-code-ide company counsel
+		 dracula-theme eat elixir-mode erlang flycheck go-mode
+		 helm-lsp lsp-origami lsp-ui magit org-preview-html
+		 projectile vterm web-mode yaml-mode yasnippet)))
